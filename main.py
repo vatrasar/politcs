@@ -19,7 +19,7 @@ def load_data(filename_with_extension)->list:
     record_list=[]
 
     for index,record in df_data.iterrows():
-        my_record=Record([record.iloc[3],record.iloc[4],record.iloc[5]],record.iloc[6],record.iloc[7],Main_party.get_main_party(record.iloc[1]),record.iloc[2])
+        my_record=Record(record[8],record[7],record[5],record[1],record[3],record[6],record[2],record[4])
         record_list.append(my_record)
 
     return record_list
@@ -278,7 +278,7 @@ def produce_for_each_type(data, womans_weight):
 
 if __name__ == '__main__':
 
-    resuts=load_data("data.csv")
+    resuts=load_data("data2.csv")
     # resuts=filtr_records(resuts,Sex.M,"...J","")
     womans_weight=get_womans_weight(resuts)
     produce_standard_charts(resuts,"wyniki ogólne", womans_weight,"ogolne")
