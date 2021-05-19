@@ -63,11 +63,15 @@ def get_mean_level(my_map):
         sum_present = my_map[1][key]*key + sum_present
 
     persons_sum=get_sum_of_votes_from_map(my_map[0])
-
+    if persons_sum==0:
+        return (0,0)
     return (float(sum_befor_pandemic)/persons_sum,float(sum_present)/persons_sum)
 
 
 
 def convert_to_procent(in_map:map,number_of_voters):
     for key in in_map.keys():
-        in_map[key]=round((in_map[key]/float(number_of_voters))*100)
+        if number_of_voters==0:
+            in_map[key] =0
+        else:
+            in_map[key]=round((in_map[key]/float(number_of_voters))*100)

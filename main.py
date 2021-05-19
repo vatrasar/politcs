@@ -41,7 +41,7 @@ def load_data(filename_with_extension)->list:
 
 def produce_for_each_demension(data):
     letters_pairs=[["E","I"],["N","S"],["T","F"],["J","P"]]
-    list_of_demensions=[]
+    map_of_demensions= {}
     for pair_index,letter_pair in enumerate(letters_pairs):
         for letter in letter_pair:
             type_name=list("....")
@@ -49,10 +49,10 @@ def produce_for_each_demension(data):
             type_name="".join(type_name)
             type_votes = filtr_records(data, type=type_name)
             type_name=type_name.replace(".","x")
-            list_of_demensions.append(type_votes)
-            produce_standard_charts(type_votes, "wyniki "+type_name, type_name)
+            map_of_demensions[type_name]=type_votes
+            produce_standard_charts(type_votes, "wyniki "+type_name, "wymiary/szczegoly/"+type_name)
             
-    produce_comparation_charts(list_of_demensions)
+    produce_comparation_charts(map_of_demensions,"porównanie wymiarów","wymiary")
     # type_votes = filtr_records(data, type=".NF.")
     # produce_standard_charts(type_votes, "wyniki " + "XNFX", womans_weight, "XNFX")
 
@@ -74,8 +74,10 @@ if __name__ == '__main__':
     # resuts=filtr_records(resuts,Sex.M,"...J","")
 
     produce_standard_charts(resuts,"wyniki ogólne","ogolne")
-    produce_for_each_demension(resuts,)
-    produce_standard_charts(filtr_records(resuts, type="INFJ"), "wyniki " + "INFJ", "INFJ")
+    produce_standard_charts(filtr_records(resuts, type="ENFP"), "wyniki " + "ENFP", "ENFP")
+
+    produce_for_each_demension(resuts)
+
     # produce_for_each_demension(resuts,womans_weight)
     # produce_for_each_type(resuts,womans_weight)
 

@@ -45,6 +45,8 @@ def split_on_realtionship_status(list_to_split:typing.List[Record]):
         if person.after_epidemic.is_in_realtionship:
             in_relationship_after = in_relationship_after+ 1
 
+    if len(list_to_split)==0:
+        return (0,0)
 
     return (in_relationship_before/float(len(list_to_split)),in_relationship_after/float(len(list_to_split)))
 

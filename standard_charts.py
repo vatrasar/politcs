@@ -35,15 +35,15 @@ def produce_standard_charts(data,title,directory):
             os.makedirs("./results/"+directory)#create directory if not exists
 
     sport_data_for_chart=get_standard_data_for_chart(data,split_on_sport_levels)
-    plot_womans_mans_vefore_after_chart(sport_data_for_chart, title, directory,  "Sport.svg")
+    plot_womans_mans_vefore_after_chart(sport_data_for_chart, title+": poziom aktywności fizycznej", directory,  "Sport.svg")
 
     friends_data_for_chart = get_standard_data_for_chart(data, split_on_friends_levels)
-    plot_womans_mans_vefore_after_chart(friends_data_for_chart, title, directory,"Przyjaznie.svg")
+    plot_womans_mans_vefore_after_chart(friends_data_for_chart, title+": poziom przyjaźni", directory,"Przyjaznie.svg")
 
     womans,mans,general=get_sample_numbers(data)
     raltionship_data = get_standard_data_for_chart(data, split_on_realtionship_status,True)
 
-    plot_relationship_chart(raltionship_data, title, directory,"Zwiazki.svg",friends_data_for_chart,womans,mans,general)
+    plot_relationship_chart(raltionship_data, title+": związki", directory,"Zwiazki.svg",friends_data_for_chart,womans,mans,general)
 
 #
 def plot_relationship_chart(votes: typing.Tuple[typing.Dict], chart_title, directory, fileName,frends_votes,womans,mans,general):
@@ -54,7 +54,7 @@ def plot_relationship_chart(votes: typing.Tuple[typing.Dict], chart_title, direc
     is_chart_after = 0
     chart_title = "%s (M%d|F%d|C%d)" % (
     chart_title, womans,mans,general)
-
+    y_label={"sport": "Średni poziom sportu", "relacja":"% osób w związku","przyjaźń":"Średni poziom przyjaźni"}
 
     max_y = get_max_y_from_relation(votes)
     x = np.arange(2)
@@ -71,7 +71,7 @@ def plot_relationship_chart(votes: typing.Tuple[typing.Dict], chart_title, direc
         retio = retio + 0.5
         sign = sign * (-1)
     # Add some text for labels, title and custom x-axis tick labels, etc.
-    ax.set_ylabel("")
+    ax.set_ylabel("% osób w związku")
     ax.set_title(chart_title)
     ax.set_xticks(x)
     ax.set_xticklabels(["Przed pandemią", "Obecnie"], fontsize=8)
