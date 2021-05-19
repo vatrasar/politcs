@@ -18,7 +18,7 @@ class PersonDataFromOneYear():
     def __init__(self,sport_level, friends_level,is_in_realtionship):
 
 
-        self.sport_level_before=int(sport_level)
+        self.sport_level=int(sport_level)
         if(friends_level=="Więcej niż 5"):
             self.friends_level = 5
         else:
